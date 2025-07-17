@@ -1,0 +1,71 @@
+>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Enhanced Favicon Setup -->
+    <link rel="icon" type="image/png" href="/pictures/favicon1.png" sizes="64x64" />
+    <link rel="apple-touch-icon" href="/pictures/favicon1.png" sizes="180x180">
+    <link rel="icon" type="image/png" href="/pictures/favicon1.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/pictures/favicon1.png" sizes="16x16">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cezar - Portfolio</title>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              skin: {
+                DEFAULT: '#ec1839',  // Your original red color
+                50: '#fdf9ff',
+                100: '#e8dfec',
+                900: '#f2f2fc',
+              },
+              // Added professional accents while keeping your main color
+              accent: {
+                blue: '#2563eb',    // Professional blue
+                orange: '#f97316',  // Vibrant orange
+              },
+              dark: {
+                900: '#121212',     // Dark background
+                800: '#222222',
+              }
+            },
+            fontFamily: {
+              poppins: ['Poppins', 'sans-serif'],
+              clicker: ['Clicker Script', 'cursive'],
+            }
+          }
+        },
+        darkMode: 'class'
+      }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Clicker+Script&family=Poppins:wght@100;900&display=swap" rel="stylesheet">
+    
+    <!-- Custom Base Styles -->
+    <style>
+      body {
+        background-color: var(--bg-black-900);
+        color: var(--text-black-900);
+      }
+      .dark body {
+        background-color: #121212;
+      }
+    </style>
+  </head>
+  <body class="font-poppins bg-skin-900 dark:bg-dark-900">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
