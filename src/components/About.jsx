@@ -12,15 +12,15 @@ const About = () => {
   const personalInfo = [
     { label: 'Birthday', value: '06 Dec 1998' },
     { label: 'Age', value: '25' },
-    { label: 'Website', value: 'www.domain.com' },
-    { label: 'Email', value: 'cezar1@gmail.com' },
+    { label: 'Website', value: 'cezar.com' },
+    { label: 'Email', value: 'ce@gmail.com' },
     { label: 'Degree', value: 'Computer Science' },
-    { label: 'Phone', value: '+237 674 404 735' },
+    { label: 'Phone', value: '674 404 735' },
     { label: 'City', value: 'Douala' },
-    { label: 'Languages', value: 'French/English' },
+    { label: 'Languages', value: 'Frh/Eng' },
     { label: 'Religion', value: 'Christian' },
     { label: 'Origin', value: 'Cameroon' },
-    { label: 'Relationship', value: 'Single/SearchX' },
+    { label: 'Relationship', value: 'Searching' },
     { label: 'Job Status', value: 'Available' },
     { label: 'Freelance', value: 'Available' }
   ];

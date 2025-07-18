@@ -11,42 +11,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
-    <!-- Favicon (modern approach) -->
-    <link rel="icon" href="/pictures/favicon.ico" sizes="any">
-    <link rel="icon" href="/pictures/favicon.svg" type="image/svg+xml">
+    <!-- Favicon -->
+    <link rel="icon" href="/pictures/favicon1.png" type="image/png">
     <link rel="apple-touch-icon" href="/pictures/apple-touch-icon.png">
 
     <!-- Tailwind via CDN -->
-    <script>
-      !function(){try{var e=document.documentElement,t=e.classList;t.remove('light','dark');
-      var n=localStorage.getItem('theme')||'light';if(t.add(n),'system'===n)
-      {var m=window.matchMedia('(prefers-color-scheme: dark)');m.addListener(function(e)
-      {e.matches?t.add('dark'):t.remove('dark')}),m.matches&&t.add('dark')}}catch(e){}}();
-    </script>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         darkMode: 'class',
         theme: {
           extend: {
             colors: {
+              darkblue: {
+                900: '#0a192f',
+                800: '#112240', 
+                700: '#233554'
+              },
               primary: {
-                DEFAULT: '#1e3a8a',  // Dark blue
-                50: '#eff6ff',
-                100: '#dbeafe',
-                800: '#1e40af',
-                900: '#1e3a8a',
+                DEFAULT: '#1e3a8a',
+                600: '#2563eb',
               },
               secondary: {
-                DEFAULT: '#f97316',  // Orange
-                50: '#fff7ed',
-                100: '#ffedd5',
-                500: '#f97316',
-                600: '#ea580c',
-              },
-              dark: {
-                900: '#0f172a',  // Dark blue-900
-                800: '#1e293b',
+                DEFAULT: '#f97316',
               }
             },
             fontFamily: {
@@ -58,8 +45,16 @@
       }
     </script>
 
-    <!-- Critical CSS -->
+    <!-- Critical CSS with fixes -->
     <style>
+      /* Reset default margins and padding */
+      html, body, #root {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
+      }
+      
       @font-face {
         font-family: 'Poppins';
         font-style: normal;
@@ -78,38 +73,45 @@
         font-feature-settings: 'kern';
         text-rendering: optimizeLegibility;
         -webkit-font-smoothing: antialiased;
+        background-color: #0a192f; /* Force darkblue-900 as fallback */
+      }
+      .dark body {
+        background-color: #0a192f; /* Ensure dark mode background */
       }
       .bg-gradient-brand {
         background-image: linear-gradient(to right, #1e3a8a, #f97316);
       }
     </style>
 
-    <!-- Non-critical CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" /></noscript>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   </head>
-  <body class="font-poppins bg-primary-50 dark:bg-dark-900 text-gray-900 dark:text-gray-100">
+  <body class="font-poppins">
     <div id="root"></div>
     
     <!-- Deferred JS loading -->
     <script type="module" src="/src/main.jsx" defer></script>
     
-    <!-- Theme script -->
- 
+    <!-- Enhanced Theme script -->
     <script>
       document.addEventListener('DOMContentLoaded', () => {
-        // Set initial theme - FIXED VERSION
-        const savedTheme = localStorage.getItem('theme') || 
-                         (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        document.documentElement.classList.add(savedTheme);
+        // Force dark mode and apply critical styles immediately
+        document.documentElement.classList.add('dark');
+        document.documentElement.style.backgroundColor = '#0a192f';
+        localStorage.setItem('theme', 'dark');
         
-        // Theme toggle handler
+        // Optional theme toggle
         const themeToggle = document.getElementById('theme-toggle');
         if (themeToggle) {
           themeToggle.addEventListener('click', () => {
             const isDark = document.documentElement.classList.toggle('dark');
+            document.documentElement.style.backgroundColor = isDark ? '#0a192f' : '#ffffff';
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            themeToggle.innerHTML = isDark ? 
+              '<i class="fas fa-sun"></i>' : 
+              '<i class="fas fa-moon"></i>';
           });
+          themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
         }
       });
     </script>
