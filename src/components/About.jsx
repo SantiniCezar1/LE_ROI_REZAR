@@ -13,14 +13,14 @@ const About = () => {
     { label: 'Birthday', value: '06 Dec 1998' },
     { label: 'Age', value: '25' },
     { label: 'Website', value: 'www.domain.com' },
-    { label: 'Email', value: 'santinidjcezar@gmail.com' },
+    { label: 'Email', value: 'cezar1@gmail.com' },
     { label: 'Degree', value: 'Computer Science' },
     { label: 'Phone', value: '+237 674 404 735' },
     { label: 'City', value: 'Douala' },
     { label: 'Languages', value: 'French/English' },
     { label: 'Religion', value: 'Christian' },
     { label: 'Origin', value: 'Cameroon' },
-    { label: 'Relationship', value: 'Single/Searching' },
+    { label: 'Relationship', value: 'Single/SearchX' },
     { label: 'Job Status', value: 'Available' },
     { label: 'Freelance', value: 'Available' }
   ];

@@ -1,39 +1,52 @@
->
-
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Enhanced Favicon Setup -->
-    <link rel="icon" type="image/png" href="/pictures/favicon1.png" sizes="64x64" />
-    <link rel="apple-touch-icon" href="/pictures/favicon1.png" sizes="180x180">
-    <link rel="icon" type="image/png" href="/pictures/favicon1.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/pictures/favicon1.png" sizes="16x16">
-    <script src="https://cdn.tailwindcss.com"></script>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cezar - Portfolio</title>
-    
-    <!-- Tailwind Configuration -->
+    <meta name="description" content="Professional portfolio of Cezar, Software Engineer and Web Developer">
+
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Favicon (modern approach) -->
+    <link rel="icon" href="/pictures/favicon.ico" sizes="any">
+    <link rel="icon" href="/pictures/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/pictures/apple-touch-icon.png">
+
+    <!-- Tailwind via CDN -->
+    <script>
+      !function(){try{var e=document.documentElement,t=e.classList;t.remove('light','dark');
+      var n=localStorage.getItem('theme')||'light';if(t.add(n),'system'===n)
+      {var m=window.matchMedia('(prefers-color-scheme: dark)');m.addListener(function(e)
+      {e.matches?t.add('dark'):t.remove('dark')}),m.matches&&t.add('dark')}}catch(e){}}();
+    </script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
     <script>
       tailwind.config = {
+        darkMode: 'class',
         theme: {
           extend: {
             colors: {
-              skin: {
-                DEFAULT: '#ec1839',  // Your original red color
-                50: '#fdf9ff',
-                100: '#e8dfec',
-                900: '#f2f2fc',
+              primary: {
+                DEFAULT: '#1e3a8a',  // Dark blue
+                50: '#eff6ff',
+                100: '#dbeafe',
+                800: '#1e40af',
+                900: '#1e3a8a',
               },
-              // Added professional accents while keeping your main color
-              accent: {
-                blue: '#2563eb',    // Professional blue
-                orange: '#f97316',  // Vibrant orange
+              secondary: {
+                DEFAULT: '#f97316',  // Orange
+                50: '#fff7ed',
+                100: '#ffedd5',
+                500: '#f97316',
+                600: '#ea580c',
               },
               dark: {
-                900: '#121212',     // Dark background
-                800: '#222222',
+                900: '#0f172a',  // Dark blue-900
+                800: '#1e293b',
               }
             },
             fontFamily: {
@@ -41,31 +54,64 @@
               clicker: ['Clicker Script', 'cursive'],
             }
           }
-        },
-        darkMode: 'class'
+        }
       }
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Clicker+Script&family=Poppins:wght@100;900&display=swap" rel="stylesheet">
-    
-    <!-- Custom Base Styles -->
+
+    <!-- Critical CSS -->
     <style>
-      body {
-        background-color: var(--bg-black-900);
-        color: var(--text-black-900);
+      @font-face {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 100 900;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecg.woff2) format('woff2');
       }
-      .dark body {
-        background-color: #121212;
+      @font-face {
+        font-family: 'Clicker Script';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/clickerscript/v14/raxkHiKPvt8CMH6ZWP8PdlEq72rY2zcq5.woff2) format('woff2');
+      }
+      body {
+        font-feature-settings: 'kern';
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+      }
+      .bg-gradient-brand {
+        background-image: linear-gradient(to right, #1e3a8a, #f97316);
       }
     </style>
+
+    <!-- Non-critical CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" /></noscript>
   </head>
-  <body class="font-poppins bg-skin-900 dark:bg-dark-900">
+  <body class="font-poppins bg-primary-50 dark:bg-dark-900 text-gray-900 dark:text-gray-100">
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Deferred JS loading -->
+    <script type="module" src="/src/main.jsx" defer></script>
+    
+    <!-- Theme script -->
+ 
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Set initial theme - FIXED VERSION
+        const savedTheme = localStorage.getItem('theme') || 
+                         (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.classList.add(savedTheme);
+        
+        // Theme toggle handler
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+          themeToggle.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+          });
+        }
+      });
+    </script>
   </body>
 </html>
